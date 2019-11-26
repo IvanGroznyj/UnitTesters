@@ -10,7 +10,13 @@ public class TestCase {
 		this.name = name;
 	}
 	
-	public void run() {
+	public void setUp() {}
+	public void tearDown() {}
+	
+	public TestResult run() {
+		TestResult result = new TestResult();
+		result.testStarted();
+		this.setUp();
 		try {
 			this.getClass().getMethod(this.name, null).invoke(this, null);
 		} catch (NoSuchMethodException e) {
@@ -20,6 +26,7 @@ public class TestCase {
 		} catch (InvocationTargetException e) {
 			System.out.println(e.toString());
 		}
-		
+		this.tearDown();
+		return result;
 	}
 }
