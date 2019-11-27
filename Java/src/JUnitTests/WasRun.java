@@ -25,6 +25,9 @@ public class WasRun extends TestCase {
 	public void testMethod() {
 		this.wasRun = true;
 		this.log += "testMethod ";
-		System.out.println("method work!");
+	}
+	
+	public void testWrongMethod() throws Exception {
+		throw new Exception("");
 	}
 }

@@ -13,20 +13,14 @@ public class TestCase {
 	public void setUp() {}
 	public void tearDown() {}
 	
-	public TestResult run() {
-		TestResult result = new TestResult();
+	public void run(TestResult result){
 		result.testStarted();
 		this.setUp();
 		try {
 			this.getClass().getMethod(this.name, null).invoke(this, null);
-		} catch (NoSuchMethodException e) {
-			System.out.println(e.toString());
-		} catch (IllegalAccessException e) {
-			System.out.println(e.toString());
-		} catch (InvocationTargetException e) {
-			System.out.println(e.toString());
+		} catch (Exception e) {
+			result.testFailed();
 		}
 		this.tearDown();
-		return result;
 	}
 }
