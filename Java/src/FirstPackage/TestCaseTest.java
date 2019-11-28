@@ -5,22 +5,17 @@ import JUnitTests.TestResult;
 import JUnitTests.TestSuite;
 import JUnitTests.WasRun;
 
-public class TestCaseTest extends TestCase{
+public class TestCaseTest extends TestSuite{
 	WasRun test = null;
 	TestResult result;
-	
-	public TestCaseTest(String name) {
-		super(name);
-	}
-	
+
 	public void setUp() {
-		super.setUp();
 		result = new TestResult();
 	}
 	
 	public void testTemplateMethod() throws Exception {
 		test = new WasRun("testMethod");
-		test.run(result);
+		test.run(result);		
 		assert("setUp testMethod tearDown ".equals(this.test.log));
 	}
 	

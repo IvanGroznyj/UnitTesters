@@ -19,6 +19,7 @@ public class TestCase {
 		try {
 			this.getClass().getMethod(this.name, null).invoke(this, null);
 		} catch (Exception e) {
+			System.out.println(" = " + e.toString());
 			result.testFailed();
 		}
 		this.tearDown();
