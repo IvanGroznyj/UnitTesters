@@ -6,7 +6,7 @@ public class WasRun extends TestCase {
 	public String log;
 	
 	public WasRun(String name) {
-		super(name);
+		super(name, "JUnitTests.WasRun");
 		this.wasRun = false;
 		this.wasSetUp = false;
 		this.log = "";

@@ -22,7 +22,7 @@ public class TestSuite {
 		Method[] methods = this.getClass().getMethods();
 		for(int i=0; i<methods.length; i++) {
 			if (methods[i].getName().startsWith("test") && !methods[i].getName().equals("testSuite")) {
-				this.tests.add(new TestCase(methods[i].getDeclaringClass().getName()+"."+methods[i].getName()));
+				this.tests.add(new TestCase(methods[i].getName(), methods[i].getDeclaringClass().getName()));
 				System.out.println("Added " + methods[i].getDeclaringClass().getName()+"."+methods[i].getName());	
 			}
 		}

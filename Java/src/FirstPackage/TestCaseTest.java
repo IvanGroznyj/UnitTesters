@@ -13,9 +13,14 @@ public class TestCaseTest extends TestSuite{
 		result = new TestResult();
 	}
 	
+	public void testHi() {
+		assert(1==1);
+	}
+	
 	public void testTemplateMethod() throws Exception {
 		test = new WasRun("testMethod");
-		test.run(result);		
+		test.run(result);
+		System.out.println("kek");
 		assert("setUp testMethod tearDown ".equals(this.test.log));
 	}
 	
@@ -37,7 +42,7 @@ public class TestCaseTest extends TestSuite{
 		assert("1 run, 1 failed".equals(result.summary()));
 	}
 	
-	public void testSuite() {
+	public void testSimpleSuite() {
 		TestSuite suite = new TestSuite();
 		suite.add(new WasRun("testMethod"));
 		suite.add(new WasRun("testWrongMethod"));
