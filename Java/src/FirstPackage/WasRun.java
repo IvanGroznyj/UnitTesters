@@ -1,4 +1,6 @@
-package JUnitTests;
+package FirstPackage;
+
+import JUnitTests.TestCase;
 
 public class WasRun extends TestCase {
 	public boolean wasRun;
@@ -6,7 +8,7 @@ public class WasRun extends TestCase {
 	public String log;
 	
 	public WasRun(String name) {
-		super(name, "JUnitTests.WasRun");
+		super(name);
 		this.wasRun = false;
 		this.wasSetUp = false;
 		this.log = "";

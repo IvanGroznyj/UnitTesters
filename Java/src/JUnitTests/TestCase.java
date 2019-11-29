@@ -5,26 +5,23 @@ import java.lang.reflect.Method;
 
 public class TestCase {
 	String name;
-	String className;
-	Object classObj;
 	
-	public TestCase(String name, String className) {
+	public TestCase(String name) {
 		this.name = name;
-		this.className = className;
 	}
 	
 	public void setUp() {}
 	public void tearDown() {}
 	
-	public void run(TestResult result){
+	public void run(TestResult result, Object instance){
 		result.testStarted();
-		this.setUp();
+		((TestSuite)instance).setUp();
 		try {
-			Class.forName(className).getMethod(this.name).invoke(Class.forName(className).newInstance());
+			instance.getClass().getMethod(this.name).invoke(instance);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 			result.testFailed();
 		}
-		this.tearDown();
+		((TestSuite)instance).tearDown();
 	}
 }

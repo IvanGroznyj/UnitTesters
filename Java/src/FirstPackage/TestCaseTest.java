@@ -3,7 +3,7 @@ package FirstPackage;
 import JUnitTests.TestCase;
 import JUnitTests.TestResult;
 import JUnitTests.TestSuite;
-import JUnitTests.WasRun;
+import FirstPackage.*;
 
 public class TestCaseTest extends TestSuite{
 	WasRun test = null;
@@ -13,26 +13,23 @@ public class TestCaseTest extends TestSuite{
 		result = new TestResult();
 	}
 	
-	public void testHi() {
-		assert(1==1);
-	}
-	
 	public void testTemplateMethod() throws Exception {
 		test = new WasRun("testMethod");
-		test.run(result);
-		System.out.println("kek");
+		test.run(result, this);
+		System.out.println(this.test.log);
 		assert("setUp testMethod tearDown ".equals(this.test.log));
+		
 	}
 	
 	public void testResult() {
 		test = new WasRun("testMethod");
-		test.run(result);
+		test.run(result, this);
 		assert("1 run, 0 failed".equals(result.summary()));
 	}
 	
 	public void testFailedResult() {
 		test = new WasRun("testWrongMethod");
-		test.run(result);
+		test.run(result, this);
 		assert("1 run, 1 failed".equals(result.summary()));
 	}
 	
@@ -40,13 +37,5 @@ public class TestCaseTest extends TestSuite{
 		result.testStarted();
 		result.testFailed();
 		assert("1 run, 1 failed".equals(result.summary()));
-	}
-	
-	public void testSimpleSuite() {
-		TestSuite suite = new TestSuite();
-		suite.add(new WasRun("testMethod"));
-		suite.add(new WasRun("testWrongMethod"));
-		suite.run(result);
-		assert("2 run, 1 failed".equals(result.summary()));
 	}
 }
